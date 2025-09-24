@@ -1,0 +1,41 @@
+name: Deploy Lambda
+
+on:
+  push:
+    branches:
+      - main   # main 브랜치에 push 될 때 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      # package.json 없는 경우 이 단계는 생략 가능
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./backend   # package.json 위치 맞게 조정
+
+      - name: Zip source code
+        run: zip -r function.zip .
+        working-directory: ./backend   # 함수 코드 위치 맞게 조정
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy to Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name my-lambda-func \
+            --zip-file fileb://function.zip
