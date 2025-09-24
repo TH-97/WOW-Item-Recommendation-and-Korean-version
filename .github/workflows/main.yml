@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "20"
 
       # package.json 없는 경우 이 단계는 생략 가능
       - name: Install dependencies
@@ -24,7 +24,6 @@ jobs:
 
       - name: Zip source code
         run: zip -r function.zip .
-        working-directory: ./backend   # 함수 코드 위치 맞게 조정
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
