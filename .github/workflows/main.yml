@@ -21,7 +21,6 @@ jobs:
       # package.json 없는 경우 이 단계는 생략 가능
       - name: Install dependencies
         run: npm install
-        working-directory: ./backend   # package.json 위치 맞게 조정
 
       - name: Zip source code
         run: zip -r function.zip .
