@@ -35,5 +35,5 @@ jobs:
       - name: Deploy to Lambda
         run: |
           aws lambda update-function-code \
-            --function-name my-lambda-func \
+            --function-name WOW-Item-Recommendation-and-Korean-version \
             --zip-file fileb://function.zip
