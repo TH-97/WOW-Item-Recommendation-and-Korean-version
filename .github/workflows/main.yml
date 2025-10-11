@@ -3,7 +3,7 @@ name: Deploy Lambda
 on:
   push:
     branches:
-      - main   # main 브랜치에 push 될 때 실행
+      - main # main 브랜치에 push 될 때 실행
 
 jobs:
   deploy:
@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Zip source code
-        run: zip -r function.zip .
+        run: zip -r function.zip dist
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
