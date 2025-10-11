@@ -1,10 +1,15 @@
 {
   "name": "wowproject",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "rebuild": "npm run clean && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +18,13 @@
     "aws-sdk": "^2.1692.0",
     "axios": "^1.12.2",
     "dotenv": "^17.2.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.5.2",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }
